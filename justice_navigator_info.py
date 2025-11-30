@@ -17,7 +17,7 @@ my_info()
 def show_date() -> None:
     now = datetime.now()
     readable = now.strftime("%B %d, %Y at %I:%M:%S %p")
-    print(f"{"="*16}{Fore.WHITE}{readable}{"="*16}\n")
+    print(f"{Fore.WHITE}{"="*16}{readable}{"="*16}\n")
     print(f"{Fore.WHITE}{"="*64}")
 
 show_date()
