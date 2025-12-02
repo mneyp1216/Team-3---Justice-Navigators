@@ -9,7 +9,8 @@
 - I have added some information to the code. I have created a baseline to assist with our ideas and make changes as needed.
 - Created README.md file so we can add project based responses, reflection.md file for the team to communicate and advise of any ideas or changes they are interested in implementing.
 
-- @DeAnna thank you for the note I will make the changes and refresh. So I don't mess this up, the file name journal_companion.py should be src/app.py. rules.py should match to which command?
+- @DeAnna thank you for the note I will make the changes and refresh. So I don't mess this up, the file name journal_companion.py should be src/app.py. rules.py should match to which command? 
+- Now that I understand I will adjust.
 
 ## DeAnna
 
