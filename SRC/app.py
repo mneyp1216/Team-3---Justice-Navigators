@@ -50,7 +50,7 @@ def daily_reflection(name):
     print(f"Current Time: {current_time}")
 
     # need to evaluate the daily questions with team, these are possible examples
-    questions = [
+    daily_questions = [
         "What's a positive thing that happened today?",
         "What made the day challenging, and how did you handle it?",
         "Did you connect with anyone today, how was that experience?",
@@ -63,17 +63,17 @@ def daily_reflection(name):
     # blank space for response
     answers = []
 
-    for e, question in enumerate(questions, 1):
+    for e, question in enumerate(daily_questions, 1):
         print(f"\n{e}. {question}")
         answer = input("Let me hear your thoughts: ")
         answers.append(answer)
 
         # user control to skip questions
-        if e < len(questions):
+        if e < len(daily_questions):
             skip = input("\nPress ENTER to continue or type 'SKIP' to finish: ")
             if skip.lower() == 'SKIP':
                 # if SKIP, fill in the rest of the questions with "Skipped"
-                for s in range(e, len(questions)):
+                for s in range(e, len(daily_questions)):
                     answers.append("Skipped")
                 break
 
@@ -83,7 +83,7 @@ def weekly_check_in(name):
     """Weekly checkin with deeper questions"""
     print("\n{name}, let's check-in...")
 
-    questions = [
+    weekly_questions = [
         "What do you feel was your biggest accomplishment this week? ",
         "What do you feel was the most challenging this week? ",
         "What support do you need right now? ",
@@ -94,8 +94,8 @@ def weekly_check_in(name):
     answers = []
     current_date = datetime.datetime.now().strftime("%m/%d/%Y")
 
-    for question in questions:
-        print("\n{question}")
+    for question in weekly_questions:
+        print("\n{questions}")
         answer = input("Your response: ")
         answers.append(answer)
 
@@ -112,7 +112,7 @@ def save_entry(entry_type, date, time, content, name):
         file.write(f"\n{'='*64}\n")
 
         if entry_type == "Daily Reflection":
-            questions = [
+            daily_questions = [
                 "Positive moment: ",
                 "Challenge handled: ",
                 "Connections: ",
@@ -122,11 +122,11 @@ def save_entry(entry_type, date, time, content, name):
                 "Current feelings: "
             ]
 
-            for e, (question, answer) in enumerate(zip(questions, content)):
+            for e, (question, answer) in enumerate(zip(daily_questions, content)):
                 file.write(f"{question}{answer}\n")
 
         elif entry_type == "Weekly Check-in":
-            questions = [
+            weekly_questions = [
                 "Biggest accomplishment: ",
                 "Most challenging: ",
                 "Support needed: ",
@@ -134,23 +134,25 @@ def save_entry(entry_type, date, time, content, name):
                 "Personal goal: "
             ]
 
-            for e, (question, answer) in enumerate(zip(questions, content)):
+            for e, (question, answer) in enumerate(zip(weekly_questions, content)):
                 file.write(f"{question}{answer}\n")
 
-    print(f"\n{Fore.GREEN} √ Your entry has been saved to {filename}")
+    print(f"\n{Fore.GREEN}√ Your entry has been saved to {filename}")
 
 def view_previous_entries(name):
     """Review previous journal entries"""
     filename = f"{name}_journal.txt"
 
     if os.path.exists(filename):
-        print(f"\n Here are your previous journal entires, {name}:\n")
+        print(f"\nHere are your previous journal entires, {name}:\n")
         with open(filename, "r") as file:
             print(file.read())
     else:
-        print(f"\n Unfortunately you have not saved a file yet. Your Journal is ready to listen when you are ready to say.")
+        print(f"\nUnfortunately you have not saved a file yet. Your Journal is ready to listen when you are ready to say.")
 
 def main():
+
+    autoreset=True
 
     # counter for invalid numbers when on the dashboard.
     invalid_count = 0
@@ -171,7 +173,7 @@ def main():
         print(f"1) Daily Reflection")
         print(f"2) Weekly Check-in")
         print(f"3) View Previous Entries")
-        print(f"4) Exit")
+        print(f"4) Exit{Style.RESET_ALL}")
 
         choice = input("\n Please select (1-4): ")
 
@@ -196,11 +198,11 @@ def main():
             break
 
         elif choice not in ["1", "2", "3", "4"]:
-            print(f"\n{colorama.Fore.RED}{'='*10} That's the Wrong Number {'='*11}\n")
-            print(f"Please choose one of the options shown (1-4){colorama.Style.RESET_ALL}")
+            print(f"\n{Fore.RED}{'='*10} That's the Wrong Number {'='*11}\n")
+            print(f"Please choose one of the options shown (1-4){Style.RESET_ALL}")
             invalid_count += 1
             if invalid_count >= 3:
-                print(f"\n{colorama.Fore.RED}You should have followed the rules, now you need to start over.{colorama.Style.RESET_ALL}\n")
+                print(f"\n{Fore.RED}You should have followed the rules, now you need to start over.{Style.RESET_ALL}\n")
                 break
 
 # Run the program
