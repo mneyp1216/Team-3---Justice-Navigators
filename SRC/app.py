@@ -5,6 +5,7 @@ import os
 import datetime
 from colorama import init, Fore, Back, Style      # type: ignore   
 import colorama                                   # type: ignore
+from rules import validate_choice
 
 autoreset=True
 
@@ -170,7 +171,7 @@ def main():
     welcome_message()
 
     # Gather user information 
-    name, start_date = user_info()
+    name, date = user_info()
 
     # Personalization of welcome
     print(f"\nWelcome, {name}! I am glad you are here.")
@@ -184,10 +185,26 @@ def main():
         print(f"3) View Previous Entries")
         print(f"4) Exit{Style.RESET_ALL}")
 
-        choice = input("\n Please select (1-4): ")
+        choice = input("\n Please select (1-4): ").strip()
 
         if invalid_count >= 3:
             break
+
+        validated = validate_choice(choice)
+
+        # if decision rule changed input, treat as invalid
+        if validated != choice:
+            print(f"\n{Fore.RED}{'='*10} That's the Wrong Number {'='*11}\n")
+            print(f"Please choose one of the options shown (1-4){Style.RESET_ALL}")
+            invalid_count += 1
+
+            # early stop if to many invalid attempts have been made
+            if invalid_count >= 3:
+                print(f"\n{Fore.RED}You should have followed the rules, now you need to start over.{Style.RESET_ALL}\n")
+                break
+
+            # back to menu without executing action
+            continue
 
         if choice == "1":
             date, time, answers = daily_reflection(name)

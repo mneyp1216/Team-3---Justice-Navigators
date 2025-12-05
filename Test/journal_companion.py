@@ -5,6 +5,7 @@ import os
 import datetime
 from colorama import init, Fore, Back, Style      # type: ignore   
 import colorama                                   # type: ignore
+from rules import validate_choice
 
 # auto reset to bring codes back to original coloring
 autoreset=True                                    
@@ -73,6 +74,7 @@ def daily_reflection(name):
         if e < len(daily_questions):
             skip = input("\nPress ENTER to continue or type 'SKIP' to finish: ")
             if skip.lower() == 'skip':
+
                 # if SKIP, fill in the rest of the questions with "Skipped"
                 for s in range(e, len(daily_questions)):
                     answers.append("Skipped")
@@ -104,6 +106,7 @@ def weekly_check_in(name):
         if e < len(weekly_questions):
             skip = input("\nPress ENTER to continue or type 'SKIP' to finish: ")
             if skip.lower() == 'skip':
+
                 # if SKIP, fill in the rest of the questions with "Skipped"
                 for s in range(e, len(weekly_questions)):
                     answers.append("Skipped")
@@ -162,6 +165,8 @@ def view_previous_entries(name):
 
 def main():
 
+    autoreset = True
+
     # counter for invalid numbers when on the dashboard.
     invalid_count = 0
 
@@ -169,7 +174,7 @@ def main():
     welcome_message()
 
     # Gather user information 
-    name, start_date = user_info()
+    name, date = user_info()
 
     # Personalization of welcome
     print(f"\nWelcome, {name}! I am glad you are here.")
@@ -183,10 +188,24 @@ def main():
         print(f"3) View Previous Entries")
         print(f"4) Exit{Style.RESET_ALL}")
 
-        choice = input("\n Please select (1-4): ")
+        choice = input("\n Please select (1-4): ").strip()
 
-        if invalid_count >= 3:
-            break
+        # decision rule to validate input, safe default "4"
+        validated = validate_choice(choice)
+
+        # if decision rule changed input, treat as invalid
+        if validated != choice:
+            print(f"\n{colorama.Fore.RED}{'='*10} That's the Wrong Number {'='*11}\n")
+            print(f"Please choose one of the options shown (1-4){colorama.Style.RESET_ALL}")
+            invalid_count += 1
+
+            # early stop if to many invalid attempts have been made
+            if invalid_count >= 3:
+                print(f"\n{colorama.Fore.RED}You should have followed the rules, now you need to start over.{colorama.Style.RESET_ALL}\n")
+                break
+
+            # returns to menu loop without taking any action
+            continue
 
         if choice == "1":
             date, time, answers = daily_reflection(name)
@@ -204,14 +223,6 @@ def main():
             print(f"Remember: Progress, not perfection. You've got this!")
             print(F"Hope to see you tomorrow.\n")
             break
-
-        elif choice not in ["1", "2", "3", "4"]:
-            print(f"\n{colorama.Fore.RED}{'='*10} That's the Wrong Number {'='*11}\n")
-            print(f"Please choose one of the options shown (1-4){colorama.Style.RESET_ALL}")
-            invalid_count += 1
-            if invalid_count >= 3:
-                print(f"\n{colorama.Fore.RED}You should have followed the rules, now you need to start over.{colorama.Style.RESET_ALL}\n")
-                break
 
 # Run the program
 if __name__ == "__main__":
