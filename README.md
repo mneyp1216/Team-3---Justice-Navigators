@@ -61,4 +61,32 @@ Name                    GitHub Handle
 
 ## Feature Spec
 
--TBA (Deanna)
+## Mood to Prompt Flow (MVP)
+
+ As a user who wants to check in with myself,
+ I want to select my mood and receive a journaling prompt,
+ so I can reflect on how I’m feeling and what I need today.
+
+## Acceptance Criteria
+
+When I run python3 src/app.py, the program greets me.
+I see a list of mood options (e.g., critical/ low / medium / high).
+When I select a valid mood, I receive one journaling prompt.
+If I enter something invalid, I receive a safe, default reflection.
+The prompt must follow tone, safety, and system instructions.
+
+
+## Test Plan
+
+Input “high” - Returns high-energy prompt.
+Input “low” - Returns grounding prompt.
+Input “banana” - Returns safe default prompt.
+
+
+## Input 
+-user inputs: name, journal option (daily, weekly, etc.), 
+
+## Output
+-motivation quote + journal prompt
+
+
