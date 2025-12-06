@@ -13,9 +13,9 @@ Name                    GitHub Handle
 
 ## Purpose
 
-- This application is a CLI based Journal Companion that assists the user with journal entries by determining the users mood, prompting the user based upon their mood by asking question about the users day, uses OpenAI's API to provide empathetic repsonses.
-- The goal is to be able to uplift and assist with positive thinking and build with some self help guidance.
-- The Journal is meant to have a personal encounter that could help in moments of need but as well to track your everyday feelings and provide words of encouragement.
+- This application is a CLI based Journal Companion that assists the user with journal entries by determining the users mood, prompting the user based upon their mood by asking questions about the users day, and uses OpenAI's API to provide empathetic repsonses.
+- The goal is to be uplift and assist with positive thinking and provide self help guidance.
+- The Journal provides a personalized encounter that can help in moments of need, tracks feelings and provides words of encouragement.
 
 ## Setup
 
@@ -40,11 +40,11 @@ Name                    GitHub Handle
 
 ## Usage Instructions for  
 
-- Run the application in the CLI using python3 src/app.py.
+- Run the application in the CLI using src/app.py.
 - Select your mood when prompted.
 - The companion will return a reflection prompt based on tone and safety rules.
 - The companion will reconcile your stated mood compared to your responses.
-- The companion will provide randomn prompt to encourage journaling.
+- The companion will provide a randomn prompt to encourage journaling.
   
 ## Responsible AI Use
 
@@ -61,15 +61,29 @@ Name                    GitHub Handle
 
 ## Feature Spec
 
-## Mood to Prompt Flow (MVP)
+## User determined mood rating (MVP)
 
  As a user who wants to check in with myself,
  I want to select my mood and receive a journaling prompt,
  so I can reflect on how I’m feeling and what I need today.
 
+ ## System generated mood rating interpreter
+
+ The user can respond to the mood related questions and basd upon the Journal's rating, the system will notify the user if their is descrpency between the users dervied mood rating versus the system, and provide the user an opportunity jouranal about the descrpency. 
+
+## Mood based user journal prompt 
+
+Depending on user determined mood rating a user journal prompt is produced. 
+
+##  AI generated feedback  
+AI will be prompted using the users responses to select user journal prompts provide productive insight regarding the users journal entry. 
+
+## Randomn user journal prompt
+A usser will be randomonly assigned a prompt to encourage a journal entry related to the prompt. 
+
 ## Acceptance Criteria
 
-When I run python3 src/app.py, the program greets me.
+When I run src/app.py, the program greets me.
 I see a list of mood options (e.g., critical/ low / medium / high).
 When I select a valid mood, I receive one journaling prompt.
 If I enter something invalid, I receive a safe, default reflection.
@@ -78,15 +92,22 @@ The prompt must follow tone, safety, and system instructions.
 
 ## Test Plan
 
+Highlevel Testing plan:
+
+Test each user intent, 
+Test each module, 
+Test API connection, 
+Test application sequence
+Test Test system prompt 
 Input “high” - Returns high-energy prompt.
 Input “low” - Returns grounding prompt.
 Input “banana” - Returns safe default prompt.
 
 
 ## Input 
--user inputs: name, journal option (daily, weekly, etc.), 
+-user inputs: name, rates the day 1-5, answers 5 questions to recieve the journals rating, selects a journal option daily or weekly, etc.), 
 
 ## Output
--motivation quote + journal prompt
+- moood dependent encouragement message + System generated mood rating + mood dependent user journal prompt 
 
 
