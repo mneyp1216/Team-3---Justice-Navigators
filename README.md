@@ -88,3 +88,30 @@ Input “banana” - Returns safe default prompt.
 ## Output
 
 -motivation quote + journal prompt
+
+## Rule Behavior Documentation
+
+### Decision Table Implementation
+#### Input Rules and Valid Values
+The Journal Companion uses structured decision table with 4 valid rules and 1 default rule. Each rule had multiple input variables for user convenience.
+=========================================================================================================
+Rule#   |   Menu Option        |Valid Input Values    | Description                                     |
+=========================================================================================================
+R1      |   Daily Reflection   |1, one, daily         | Start daily reflection with mood assessment     |
+R2      |   Weekly Check-in    |2, two, weekly        | Complete a weekly reflection                    |
+R3      |   View Previous Entry|3, three, view        | Display saved journal entries                   |
+R4      |   Exit Program       |4, four, exit, quit   | Exit application gracefully                     |
+Default |   Invalid Input      |Any other value       | Shows error message and increment error counter |
+=========================================================================================================
+
+#### Mood Assessment Scale Inputs
+the mood assessment system accpts both number values(1-5) and descriptive keywords:
+=======================================================================================================
+Level | Numeric  |  Keywords                                |   Description                           |
+=======================================================================================================
+1     | 1        | critical, distress, crisis, overwhelmed  |  Critical - Distress, Crisis Indicator  |
+2     | 2        |  low, struggling, stressed, heavy, sad   |   Low - Struggling, stressed, heavy     |
+3     | 3        |  mid, okay, medium, mixed, alright       |   Mid - Okay, some good/ some strain    |
+4     | 4        |  high, thriving, motivated, good, happy  |   High - Thriving, motivated, doing well|
+5     | 5        |  indifferent, neutral, ok, fine, meh     |   Indifferent - Neutral                 |
+=======================================================================================================
