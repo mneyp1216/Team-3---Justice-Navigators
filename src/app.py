@@ -12,9 +12,6 @@ from mood_assessment import assess_mood, display_mood_scale
 
 init(autoreset=True)
 
-# Add version constant
-__version__ = "1.1.0"
-
 def welcome_message():
     """introduction to journal"""
     print(f"\n{'='*14} Welcome to your Journal Companion {'='*15}\n")

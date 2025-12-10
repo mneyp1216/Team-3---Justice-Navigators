@@ -10,7 +10,7 @@ import os
 # Add current directory to path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from mood_assessment import assess_mood, get_mood_statistics
+from src.mood_assessment import assess_mood, get_mood_statistics
 
 class TestMoodAssessment(unittest.TestCase):
     """Test cases for mood assessment functions"""

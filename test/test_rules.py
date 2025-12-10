@@ -26,8 +26,8 @@ import os
 # Add current directory to python path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from rules import validate_choice, validate_with_decision_table, get_decision_table_info
-from decision_table import decision_table
+from src.rules import validate_choice, validate_with_decision_table, get_decision_table_info
+from src.decision_table import decision_table
 
 def test_validate_choice():
     """Test the validate_choice function"""

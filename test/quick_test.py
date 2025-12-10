@@ -3,7 +3,7 @@
 Quick interactive test for rules.py
 """
 
-from rules import validate_choice
+from src.rules import validate_choice
 
 def quick_test():
     print("Quick Test for validate_choice()")

@@ -1,6 +1,6 @@
 # test_decision_table.py
 
-from decision_table import decision_table
+from src.decision_table import decision_table
 
 def test_decision_table():
     """
